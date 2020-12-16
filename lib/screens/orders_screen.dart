@@ -13,20 +13,15 @@ class OrdersScreen extends StatefulWidget {
 }
 
 class _OrdersScreenState extends State<OrdersScreen> {
-  var _isLoading = false;
+  Future _ordersFuture;
+
+  Future _obtainOrdersFuture() {
+    return Provider.of<Orders>(context, listen: false).fetchAndSetOrders();
+  }
 
   @override
   void initState() {
-    /*
-    Future.delayed(Duration.zero).then((_) async {
-      setState(() {
-        _isLoading = true;
-      });
-      await Provider.of<Orders>(context, listen: false).fetchAndSetOrders();
-      setState(() {
-        _isLoading = false;
-      });
-    });*/
+    _ordersFuture = _obtainOrdersFuture();
     super.initState();
   }
 
@@ -39,8 +34,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
         ),
         drawer: AppDrawer(),
         body: FutureBuilder(
-          future:
-              Provider.of<Orders>(context, listen: false).fetchAndSetOrders(),
+          future: _ordersFuture,
           builder: (ctx, dataSnapshot) {
             if (dataSnapshot.connectionState == ConnectionState.waiting) {
               return Center(
