@@ -43,7 +43,7 @@ class ProductItem extends StatelessWidget {
                   authData.userId,
                 );
               },
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
           backgroundColor: Colors.black87,
@@ -57,8 +57,8 @@ class ProductItem extends StatelessWidget {
             ),
             onPressed: () {
               cart.addItem(product.id, product.price, product.title);
-              Scaffold.of(context).hideCurrentSnackBar();
-              Scaffold.of(context).showSnackBar(
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text('Added item to the cart!'),
                   duration: Duration(seconds: 2),
@@ -70,7 +70,7 @@ class ProductItem extends StatelessWidget {
                 ),
               );
             },
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
       ),

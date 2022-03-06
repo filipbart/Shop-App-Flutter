@@ -26,7 +26,7 @@ class CustomRoute<T> extends MaterialPageRoute<T> {
   }
 }
 
-class CustomPageTransitionBuilder extends PageTransitionsBuilder{
+class CustomPageTransitionBuilder extends PageTransitionsBuilder {
   @override
   Widget buildTransitions<T>(
     PageRoute<T> route,
@@ -43,5 +43,4 @@ class CustomPageTransitionBuilder extends PageTransitionsBuilder{
       child: child,
     );
   }
-}
 }
